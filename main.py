@@ -26,13 +26,9 @@ import anthropic
 # ── Setup ──────────────────────────────────────────────────────────────────────
 app = FastAPI(title="PROVOKE RAG Backend")
 
-_cors_origins_env = os.getenv("CORS_ORIGINS", "")
-_cors_origins = [o.strip() for o in _cors_origins_env.split(",") if o.strip()]
-_cors_origins += ["http://localhost:5173", "http://localhost:5174"]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_cors_origins,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
